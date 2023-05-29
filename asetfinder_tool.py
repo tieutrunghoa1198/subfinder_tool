@@ -1,20 +1,21 @@
+# assetfinder --subs-only example.com
 import subprocess
 import time
 import re
-class SubfinderTool:
-    def __init__(self, domain):
+class AssetFinderTool:
+    def __init__(self, domain): 
         self.domain = domain
 
-    def enumerate_subdomains(self):
+    def enumerate_subdomains(self): 
         startTime = time.time()
-        command = ['subfinder', '-d', self.domain]
+        command = ['assetfinder', '--subs-only', self.domain]
 
-        print("[+] Start extracting...")
-        output = subprocess.check_output(command, universal_newlines=True)        
+        print("[+] Start extracting using AssetFinder...")
+        output = subprocess.check_output(command, universal_newlines=True)
         print("==> Extracted data:", output)
-        
-        print(f"[+] Script finish in: {time.time() - startTime}")
 
+        print(f"[+] Script finish in: {time.time() - startTime}")
+        
         result = list(set(output.strip().split('\n')))
         finalList = self.getListDomain(result)
         

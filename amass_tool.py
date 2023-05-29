@@ -1,16 +1,16 @@
 import subprocess
 import time
 import re
-class SubfinderTool:
+class AmassTool: 
     def __init__(self, domain):
         self.domain = domain
-
+    
     def enumerate_subdomains(self):
         startTime = time.time()
-        command = ['subfinder', '-d', self.domain]
-
-        print("[+] Start extracting...")
-        output = subprocess.check_output(command, universal_newlines=True)        
+        command = ['amass', 'enum', '-d', self.domain]
+        
+        print("[+] Start extracting using Amass...")
+        output = subprocess.check_output(command, universal_newlines=True)
         print("==> Extracted data:", output)
         
         print(f"[+] Script finish in: {time.time() - startTime}")
@@ -20,7 +20,6 @@ class SubfinderTool:
         
         return finalList
     
-
     def getListDomain(self, data): 
         pattern = r"(?<!\S)[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?(?!\S)"
         domains = [item for item in data if re.match(pattern, item)]
