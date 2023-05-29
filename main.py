@@ -24,7 +24,10 @@ class SubDomainReconTool:
         return uniqueList
     
     def writeToFile(self): 
-        if len(self.listDomain) == 0: return
+        if len(self.listDomain) == 0: 
+            print('There is no file to write. use run() in SubDomainReconTool to generate output.txt')
+            return
+        
         with open("output.txt", "w") as file:
             # Iterate over each element in the list
             for item in self.listDomain:

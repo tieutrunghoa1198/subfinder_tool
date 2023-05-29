@@ -1,4 +1,3 @@
-# assetfinder --subs-only example.com
 import subprocess
 import time
 from utils import Utils
