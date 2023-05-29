@@ -1,7 +1,7 @@
 # assetfinder --subs-only example.com
 import subprocess
 import time
-import re
+from utils import Utils
 class AssetFinderTool:
     def __init__(self, domain): 
         self.domain = domain
@@ -17,12 +17,6 @@ class AssetFinderTool:
         print(f"[+] Script finish in: {time.time() - startTime}")
         
         result = list(set(output.strip().split('\n')))
-        finalList = self.getListDomain(result)
+        finalList = Utils.getListDomain(result)
         
         return finalList
-    
-
-    def getListDomain(self, data): 
-        pattern = r"(?<!\S)[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?(?!\S)"
-        domains = [item for item in data if re.match(pattern, item)]
-        return domains
