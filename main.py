@@ -19,7 +19,7 @@ class SubDomainReconTool:
         uniqueList = list(set(listDomain))
         print(uniqueList)
         
-        print(f"[+] Script finish in: {time.time() - startTime}")
+        print(f"[+] The final script finish in: {time.time() - startTime}")
         self.listDomain = uniqueList
         return uniqueList
     
