@@ -6,16 +6,20 @@ class AssetFinderTool:
         self.domain = domain
 
     def enumerate_subdomains(self): 
-        startTime = time.time()
-        command = ['assetfinder', '--subs-only', self.domain]
+        try:
+            startTime = time.time()
+            command = ['assetfinder', '--subs-only', self.domain]
 
-        print("[+] Start extracting using AssetFinder...")
-        output = subprocess.check_output(command, universal_newlines=True)
-        print("==> Extracted data:", output)
+            print("[+] Start extracting using AssetFinder...")
+            output = subprocess.check_output(command, universal_newlines=True)
+            print("==> Extracted data:", output)
 
-        print(f"[+] Script finish in: {time.time() - startTime}")
-        
-        result = list(set(output.strip().split('\n')))
-        finalList = Utils.getListDomain(result)
-        
-        return finalList
+            print(f"[+] Script finish in: {time.time() - startTime}")
+            
+            result = list(set(output.strip().split('\n')))
+            finalList = Utils.getListDomain(result)
+            
+            return finalList
+        except subprocess.CalledProcessError:
+            print('AssetFinder tool might not be installed.')
+            return []

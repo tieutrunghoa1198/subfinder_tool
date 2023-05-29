@@ -4,9 +4,11 @@ from asetfinder_tool import AssetFinderTool
 from amass_tool import AmassTool
 import time
 class SubDomainReconTool:
-    def __init__(self): 
-        self.domain = 'bugcrowd.com'
+    def __init__(self, domain): 
+        self.domain = domain
         self.listDomain = []
+
+
     def run(self):
         startTime = time.time() 
 
@@ -23,6 +25,7 @@ class SubDomainReconTool:
         self.listDomain = uniqueList
         return uniqueList
     
+    
     def writeToFile(self): 
         if len(self.listDomain) == 0: 
             print('There is no file to write. use run() in SubDomainReconTool to generate output.txt')
@@ -35,6 +38,6 @@ class SubDomainReconTool:
                 file.write(str(item) + "\n")
 
 if __name__ == '__main__':
-    tool = SubDomainReconTool()
+    tool = SubDomainReconTool('bugcrowd.com')
     tool.run()
     tool.writeToFile()
